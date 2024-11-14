@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+  {% if user.is_authenticated %}
+    <section class="mb-4 text-center">
+      <form method="POST" action="{% url 'post-create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- Campos ocultos para latitude e longitude -->
+        <input type="hidden" name="latitude" id="latitude" value="" />
+        <input type="hidden" name="longitude" id="longitude" value="" />
+        <button type="submit" class="btn btn-primary p-3">Create a New Post</button>
+      </form>
+
+      {% if form.errors %}
+        <div class="alert alert-danger mt-2">
+          <ul>
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <h2 class="h4 mb-4 mt-5">Recent Posts</h2>
+  {% for post in posts %}
+    <article class="media content-section bg-dark text-light mb-4 p-3 rounded">
+      <div class="media-body">
+        <div class="article-metadata mb-2">
+          <img class="rounded-circle article-img me-3 mb-2" src="{{ post.author.profile.image.url }}" />
+          <a class="fw-bold text-decoration-none text-light me-4" href="{% url 'user-posts' post.author.username %}">@{{ post.author }}</a>
+        </div>
+        <h3><a class="article-title text-light" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+        <p class="article-content">{{ post.content }}</p>
+        <div>
+          <small class="text-secondary me-2 fst-italic">{{ post.date_posted|date:'d M, Y' }}</small>
+          {% if post.latitude and post.longitude %}
+            <small class="text-secondary fst-italic">Latitude: {{ post.latitude }}, Longitude: {{ post.longitude }}</small>
+          {% else %}
+            {% comment %} <small class="text-secondary fst-italic">Location not provided</small> {% endcomment %}
+          {% endif %}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+
+  {% include 'blog/pagination.html' %}
+{% endblock %}

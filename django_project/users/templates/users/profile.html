@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="content-section bg-dark text-light p-4 rounded">
+    <div class="media">
+      <img class="rounded-circle account-img mr-3" src="{{ user.profile.image.url }}" alt="Profile Image" width="100" height="100" />
+
+      <div class="media-body">
+        <h2 class="account-heading" style="color: #E4E6EB">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4 text-light">Profile Info</legend>
+        {{ u_form|crispy }}
+        {% comment %} {{ p_form|crispy }} {% endcomment %}
+      </fieldset>
+
+      <div class="form-group d-flex align-items-center mb-4">
+        <input type="file" name="image" id="id_image" class="form-control-file" style="display: none;" />
+        <button class="btn btn-outline-info ml-4" type="button" onclick="document.getElementById('id_image').click();">Change Image</button>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-outline-success" type="submit">Update Changes</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

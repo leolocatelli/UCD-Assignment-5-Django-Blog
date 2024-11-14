@@ -1,0 +1,56 @@
+
+START PROJECT DJANDO. 
+python3 -m venv env
+---------- source env/bin/activate
+pip install django
+django-admin startproject django_project (django-admin 'shows all the commands')
+python manage.py startapp blog
+
+---------- python3 manage.py runserver
+
+
+to create admin 
+python3 manage.py migrate
+python3 manage.py createsuperuser
+stevek
+Leo_Locatelli
+stephen.kohlmannucd@gmail.com
+admin1234
+VasR
+admin_1234
+
+to accesss the db python3 manage.py shell
+
+STOP ATE UNIT_7 AT 393
+
+url.py
+from users import views as user_views
+
+path("logout/", user_views.logout_view, name="logout"),
+
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'users/logout.html')
+
+pip3 install coverage
+
+rwrv zykb jygr vxjg
+leolocatelli30@gmail.com
+
+leolocatelli30@gmail.com
+rwrv zykb jygr vxjg
+
+
+**To run all tests in both apps we use**
+    python manage.py test
+
+**To run all tests in a specific app we use**
+python manage.py test (name_of_app)
+
+    python manage.py test blog
+    python manage.py test users
+
+**To run all tests in a specific class in a test file we use**
+python manage.py test blog.tests.classname

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="content-section bg-dark text-light p-4 rounded">
+    <h2 class="text-center mb-4" style="color: #E4E6EB">Create a New Post</h2>
+    <form method="POST" action="{% url 'post-create' %}">
+      {% csrf_token %}
+
+      <!-- Usando crispy para melhorar a formatação do formulário -->
+      {{ form|crispy }}
+
+      <!-- Botão de submissão centralizado -->
+      <div class="form-group text-center mt-4">
+        <button type="submit" class="btn btn-outline-info">Create Post</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
