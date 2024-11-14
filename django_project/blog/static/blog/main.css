@@ -4,6 +4,8 @@ body {
     margin-top: 5rem;
 }
 
+
+
 h1,
 h2,
 h3,
@@ -86,4 +88,35 @@ a.article-title:hover {
 
 .account-heading {
     font-size: 2.5rem;
+}
+
+
+.form-text,
+.text-muted,
+.invalid-feedback,
+.errorlist li {
+    color: #ffffff !important;
+}
+
+.content-section .form-control,
+.content-section .form-control:focus,
+.content-section .form-select {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+.content-section .form-control::placeholder {
+    color: #bbbbbb;
+}
+
+.content-section label {
+    color: #ffffff;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
 }

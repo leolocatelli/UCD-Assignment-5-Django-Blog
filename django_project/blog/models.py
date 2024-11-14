@@ -4,11 +4,15 @@ from django.contrib.auth.models import User
 from django.urls import reverse # Change here
 
 # Create your models here.
-class Post(models.Model): 
+class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)  # new field of likes
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.title

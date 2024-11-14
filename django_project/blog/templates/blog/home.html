@@ -33,7 +33,7 @@
     <article class="media content-section bg-dark text-light mb-4 p-3 rounded">
       <div class="media-body">
         <div class="article-metadata mb-2">
-          <img class="rounded-circle article-img me-3 mb-2" src="{{ post.author.profile.image.url }}" />
+          <img class="rounded-circle article-img me-3 mb-2" src="{{ post.author.profile.image.url }}" alt="Profile Picture" class="profile-pic" />
           <a class="fw-bold text-decoration-none text-light me-4" href="{% url 'user-posts' post.author.username %}">@{{ post.author }}</a>
         </div>
         <h3><a class="article-title text-light" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
@@ -45,6 +45,36 @@
           {% else %}
             {% comment %} <small class="text-secondary fst-italic">Location not provided</small> {% endcomment %}
           {% endif %}
+        </div>
+        <div class="d-flex align-items-center mt-3">
+          <form action="{% url 'like-post' post.id %}" method="POST" class="mr-2 gap-3">
+            {% csrf_token %}
+            <button type="submit"
+              class="btn btn-sm {% if user in post.likes.all %}
+                
+                
+                
+                btn-info
+
+
+
+              {% else %}
+                
+                
+                
+                btn-outline-info
+
+
+
+              {% endif %}">
+              {% if user in post.likes.all %}
+                Unlike
+              {% else %}
+                Like
+              {% endif %}
+            </button>
+          </form>
+          <small class="text-secondary p-3">{{ post.total_likes }} likes</small>
         </div>
       </div>
     </article>

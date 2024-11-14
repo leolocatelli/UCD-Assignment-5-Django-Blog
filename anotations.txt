@@ -54,3 +54,7 @@ python manage.py test (name_of_app)
 
 **To run all tests in a specific class in a test file we use**
 python manage.py test blog.tests.classname
+
+
+python3 manage.py makemigrations
+python3 manage.py migrate

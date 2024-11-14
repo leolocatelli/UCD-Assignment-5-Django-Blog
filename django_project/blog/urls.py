@@ -1,20 +1,22 @@
 from django.urls import path
 from .views import (
-    PostlistView, 
-    PostDetailView, 
+    PostListView,  # Corrigido para usar 'PostListView'
+    PostDetailView,
     PostCreateView,
     PostUpdateView,
     PostDeleteView,
-    UserPostListView #Imported the PostDeleteView class from views.py
+    UserPostListView,  # Corrigido para incluir a classe UserPostListView
 )
-from .import views
+from . import views
 
 urlpatterns = [
-    path('', PostlistView.as_view(), name='blog-home'),
-    path('user/<str:username>/', UserPostListView.as_view(), name='user-posts'),
-    path('post/<int:pk>', PostDetailView.as_view(), name='post-detail'),
+    path('', PostListView.as_view(), name='blog-home'),  # Corrigido aqui também
+    path('user/<str:username>/', UserPostListView.as_view(), name='user-posts'),  # Corrigido aqui
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
-    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'), # Added in new url pattern
-    path('about/',views.about, name='blog-about'),
+    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('about/', views.about, name='blog-about'),
+    path('post/<int:post_id>/like/', views.like_post, name='like-post'),  # Nova URL para likes
 ]
+    
