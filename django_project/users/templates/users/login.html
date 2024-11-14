@@ -1,12 +1,12 @@
 {% extends 'blog/base.html' %}
-{% load crispy_forms_tags %} <!-- Carrega as tags do crispy forms -->
+{% load crispy_forms_tags %}
 {% block content %}
   <div class="content-section bg-dark text-light p-4 rounded d-flex flex-column align-items-center justify-content-center">
     <form method="POST" class="w-100" style="max-width: 400px;">
       {% csrf_token %}
       <fieldset class="form-group">
         <legend class="border-bottom mb-4 text-center">Login</legend>
-        {{ form|crispy }} <!-- Renderiza o formulário usando o crispy forms -->
+        {{ form|crispy }}
       </fieldset>
       <div class="form-group text-center">
         <button class="btn btn-outline-info btn-lg w-100" type="submit">Login</button>
