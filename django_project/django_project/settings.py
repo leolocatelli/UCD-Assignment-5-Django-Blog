@@ -10,7 +10,8 @@
 
 
 from pathlib import Path
-#import os
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-eu)qkr)wtsxzqfgugpag&7pgb6(e%p)ln3$-v(7jz81va_s&*v"
+SECRET_KEY = os.environ.get("SECRET_KEY")
+#"django-insecure-eu)qkr)wtsxzqfgugpag&7pgb6(e%p)ln3$-v(7jz81va_s&*v"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -84,7 +86,11 @@ DATABASES = {
     }
 }
 
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
 
+
+#"postgresql://django_blog_render_ppk4_user:qmbxiOcz2Jcm8nykqnbI60sfSSDLWLd9@dpg-csrg97ogph6c73b5p1q0-a.oregon-postgres.render.com/django_blog_render_ppk4"
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
