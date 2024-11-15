@@ -8,6 +8,8 @@ python manage.py startapp blog
 
 ---------- python3 manage.py runserver
 
+PIP --- python3 -m pip install dj-database-url
+
 
 to create admin 
 python3 manage.py migrate
