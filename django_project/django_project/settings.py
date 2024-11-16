@@ -95,13 +95,15 @@ USE_I18N = True
 USE_TZ = True
 
 # Static and Media Files
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
 # STATIC_ROOT = BASE_DIR / "staticfiles"  # For production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    BASE_DIR / "static",]
+    BASE_DIR / "static",  # Localização de arquivos estáticos em desenvolvimento
+]
 if not DEBUG:
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+    
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 

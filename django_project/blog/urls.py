@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import (
     PostListView,  # Corrigido para usar 'PostListView'
     PostDetailView,
@@ -19,4 +21,6 @@ urlpatterns = [
     path('about/', views.about, name='blog-about'),
     path('post/<int:post_id>/like/', views.like_post, name='like-post'),  # Nova URL para likes
 ]
-    
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
