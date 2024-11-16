@@ -60,3 +60,5 @@ python manage.py test blog.tests.classname
 
 python3 manage.py makemigrations
 python3 manage.py migrate
+
+pip3 freeze > requirements.txt
