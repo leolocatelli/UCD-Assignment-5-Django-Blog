@@ -12,6 +12,8 @@ DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
 # Allowed Hosts
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split()
+ALLOWED_HOSTS = ['ucd-assignment-5-django-blog-5.onrender.com']
+
 
 # Installed Apps
 INSTALLED_APPS = [
